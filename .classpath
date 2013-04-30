@@ -13,9 +13,9 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/austin/Documents/GameJars/lwjgl-2.9.0/native/macosx"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/austin/Documents/GameJars/lwjgl-2.9.0/jar/lwjgl.jar">
+	<classpathentry kind="lib" path="C:/gamedev/PGJ-Blitzkrieg/lib/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/austin/Documents/GameJars/lwjgl-2.9.0/native/macosx"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/gamedev/PGJ-Blitzkrieg/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
