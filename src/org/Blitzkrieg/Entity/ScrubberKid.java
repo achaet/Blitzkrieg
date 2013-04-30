@@ -1,0 +1,92 @@
+package org.Blitzkrieg.Entity;
+
+import java.util.List;
+
+import org.Blitzkrieg.State.GameState;
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.state.StateBasedGame;
+
+public class ScrubberKid extends Tower{
+
+	private Animation spray;
+	private Boolean attacking;
+	private Animation deadMan;
+	
+	@Override
+	public void init(GameContainer gc, StateBasedGame game, int mouseX, int mouseY)
+			throws SlickException {
+		image = new Image("res/images/entities/ScrubberKid/ScrubberKid.png");
+		spray = new Animation(new SpriteSheet("res/images/entities/ScrubberKid/ScrubberKidAttack.png", 24, 24), 300);
+		deadMan =  new Animation(new SpriteSheet("res/images/entities/ScrubberKid/deadguy.png", 24, 24), 300); 
+		spray.setLooping(false);
+		shape = new Rectangle(mouseX-12,mouseY-12,24,24);
+		attacking = false;
+		HPDamage = 10;
+		ArmourDamage = 0;
+		range = 50;
+		price = 75;
+		moral = 100;
+		super.init(gc, game);
+	}
+
+	@Override
+	public void update(GameContainer gc, StateBasedGame game, int g)
+			throws SlickException {
+		TargetCheck(((GameState)game.getCurrentState()).getCars());
+		if(spray.isStopped() && !dead && placed){
+			//System.out.println(moral);
+			moral-=1;
+			if(moral<=0){
+				dead = true;
+			}
+			else{
+				attacking = false;
+				spray.restart();
+			}
+		}
+		super.update(gc, game, g);
+	}
+	private void TargetCheck(List<Vehicle> cars) {
+		if(!attacking){
+			Shape Target = new Circle(shape.getCenterX(), shape.getCenterY(), range);
+			for(Vehicle v : cars){
+				if(Target.intersects(v.shape)){
+					attacking = true;
+					DamageCar(v);
+					break;
+				}
+			}
+		}
+	}
+	@Override
+	public void render(GameContainer gc, StateBasedGame game, Graphics g)
+			throws SlickException {
+		if(!placed){
+			g.setColor(Color.blue);
+			g.fill(shape);
+		}
+		if(!dead){
+			if(!attacking){
+				g.drawImage(image, shape.getX(), shape.getY());
+			}
+			else{
+				g.drawAnimation(spray, shape.getX(), shape.getY());
+			}
+		}
+		else{
+			g.drawAnimation(deadMan, shape.getX(), shape.getY());
+		}
+	}
+
+	
+	
+}
