@@ -19,7 +19,7 @@ public class Truck extends Vehicle{
 	@Override
 	public void init(GameContainer gc, StateBasedGame game)
 			throws SlickException {
-		LeftRightShape = new Rectangle(-100,-100,123,36);
+		LeftRightShape = new Rectangle(-100,-100,123,50);
 		UpDownShape = new Rectangle((int)xLocation,(int)yLocation,50,123);
 		hp = 1000;
 		armour= .1;

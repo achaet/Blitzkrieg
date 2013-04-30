@@ -202,6 +202,15 @@ public class GameState extends BasicGameState {
 				e.printStackTrace();
 			}
 		}
+		if(key == Input.KEY_G){
+			cars.add(new Van(start, "right"));
+			try {
+				cars.get(cars.size()-1).init(gc, game);
+			} catch (SlickException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		super.keyPressed(key, c);
 	}
 

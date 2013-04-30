@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.Blitzkrieg.State.GameState;
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -70,6 +71,15 @@ public class Vehicle extends Entity{
 			throws SlickException {
 		super.render(gc, game, g);
 		g.drawAnimation(Current, shape.getX(), shape.getY());
+		g.setColor(Color.red);
+		g.fillRect(shape.getCenterX()-10, shape.getCenterY()-2, 20, 4);
+		if((hp/maxHp) > .5){
+			g.setColor(Color.green);
+		}
+		else{
+			g.setColor(Color.yellow);
+		}
+		g.fillRect(shape.getCenterX()-10, shape.getCenterY()-2, (float) ((20*(hp/maxHp))), 4);
 		//g.setColor(Color.red);
 		//g.draw( new Rectangle((float) (shape.getCenterX()-speed), (float) (shape.getCenterY()-speed)+1, (int)(2*speed), (int)(2*speed)));
 	}
